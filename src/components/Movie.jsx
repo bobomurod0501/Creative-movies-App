@@ -8,6 +8,7 @@ class Movie extends React.Component{
 
     render(){
         const {Title, Year, imdbID, Type, Poster} = this.props
+        console.log("data", this.props)
         return(
             <div key={imdbID} className="card">
                 <div className="card__img">

@@ -7,8 +7,8 @@ class App extends React.Component{
     state = {}
 
     render(){
-        return <div className="container">
-            <Header />
+        return <div>
+        <Header />
             <Index />
             <Footer />
         </div>;

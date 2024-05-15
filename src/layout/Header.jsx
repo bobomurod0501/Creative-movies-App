@@ -19,11 +19,12 @@ class Header extends React.Component{
                     </li>
                 </ul>
             </div>
-            <div>
-                <a href="#"> <img src="https://www.bhmpics.com/downloads/the-walking-dead-season-8-Wallpapers/1.the-walking-dead-season-8-amc.jpg" className="headerImg" alt="" /></a>
-                <div className="playIcon">
-
-                </div>
+            <div className="headerBrandImg">
+              <div className="playImg">
+                 <img src="https://cdn-icons-png.flaticon.com/128/9974/9974136.png" alt="play Icon" />
+                 
+              </div>
+              
             </div>
         </header>;
     }

@@ -3,21 +3,27 @@ import React from "react";
 
 class Searchbar extends React.Component {
   state = {
-    searchValue: "",
+    searchValue: "speed",
+    type: "all",
   };
 
   handleText = (e) => {
-    if (e.key === "Enter") this.props.searchMovies(this.state.searchValue);
+    if (e.key === "Enter") this.props.searchMovies(this.state.searchValue, this.state.type);
   };
-  handleVal = () => {
-    this.props.searchMovies(this.state.searchValue);
-  }
+  handleVal = (e) => {
+    console.log(e.target.dataset.type,)
+    this.setState(() => ({
+      type: e.target.dataset.type,
+    }), () => {
+      this.props.searchMovies(this.state.searchValue, this.state.type)
+    });
+  };
 
   render() {
     const { searchValue } = this.state;
     return (
-      <div>
-        <form action="" className="search-bar">
+      <div className="search">
+        <div className="search-bar">
           <input
             type="search"
             name="search"
@@ -34,30 +40,53 @@ class Searchbar extends React.Component {
             className="search-btn"
             value={searchValue}
             onClick={(e) => {
-                e.preventDefault()
+              e.preventDefault();
               this.setState({ searchValue: e.target.value });
               this.props.searchMovies(this.state.searchValue);
             }}
           >
             <span>Search</span>
           </button>
-        </form>
-       
-    <div className="selector">
-        <div className="selector-item">
-            <input type="radio" id="radio1" name="selector" className="selector-item_radio" checked/>
-            <label htmlFor="radio1" className="selector-item_label">radio 1</label>
         </div>
-        <div className="selector-item">
-            <input type="radio" id="radio2" name="selector" className="selector-item_radio"/>
-            <label htmlFor="radio2" className="selector-item_label">radio 2</label>
-        </div>
-        <div className="selector-item">
-            <input type="radio" id="radio3" name="selector" className="selector-item_radio"/>
-            <label htmlFor="radio3" className="selector-item_label">radio 3</label>
-        </div>
-    </div>
 
+        <div className="radio">
+          <input
+            className="radio__input"
+            type="radio"
+            name="MyRadio"
+            id="myRadio1"
+            data-type="all"
+            onChange={this.handleVal}
+            checked={this.state.type === "all"}
+          />
+          <label className="radio__label" htmlFor="myRadio1">
+            All
+          </label>
+          <input
+            className="radio__input"
+            type="radio"
+            name="MyRadio"
+            id="myRadio2"
+            data-type="movie"
+            onChange={this.handleVal}
+            checked={this.state.type === "movie"}
+          />
+          <label className="radio__label" htmlFor="myRadio2">
+            Movie
+          </label>
+          <input
+            className="radio__input"
+            type="radio"
+            name="MyRadio"
+            id="myRadio3"
+            data-type="series"
+            onChange={this.handleVal}
+            checked={this.state.type === "series"}
+          />
+          <label className="radio__label" htmlFor="myRadio3">
+            Series
+          </label>
+        </div>
       </div>
     );
   }

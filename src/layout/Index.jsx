@@ -18,8 +18,8 @@ class Index extends React.Component {
       });
   }
 
-  searchMovies = (text) => {
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=31474b8c&s=${text}`)
+  searchMovies = (text, type = "all") => {
+    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=31474b8c&s=${text}${type !== "all"  ? `&type=${type}` : ""}`)
       .then((response) => {
         return response.json();
       })
